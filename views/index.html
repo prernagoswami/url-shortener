@@ -1,18 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
-        input, button { padding: 10px; margin: 5px; }
+/* 🌐 General Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e293b, #64748b);
+    color: #e2e8f0;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+/* 📦 Container Styling */
+.container {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header Styling */
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #f8fafc;
+}
+
+/* Input Container */
+.input-container {
+    position: relative;
+}
+
+/* 📥 URL Input Field */
+#urlInput {
+    width : 100% ;
+    padding: 12px;
+    padding-left: 30px;  /* Add space for the icon */
+    border: 2px solid #93c5fd;
+    border-radius: 8px;
+    outline: none;
+    background-color: #e2e8f0;
+    color: #1e293b;
+    display: flex;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Icon Styling for URL Input */
+.input-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #93c5fd;
+    font-size: 18px;
+}
+
+/* 🚀 Shorten Button */
+#shortenBtn {
+    width: 100%;
+    background-color: #4f46e5;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+}
+
+/* Icon Styling for Button */
+#shortenBtn i {
+    margin-right: 8px; /* Space between the icon and text */
+}
+
+#shortenBtn:hover {
+    background-color: #4338ca;
+    transform: scale(1.05);
+}
+
+/* ✅ Result Message */
+#result {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 📱 Media Queries for Responsiveness */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    #urlInput,
+    #shortenBtn {
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body>
-    <h1>URL Shortener</h1>
-    <input id="urlInput" type="text" placeholder="Enter your URL">
-    <button onclick="shortenUrl()">Shorten</button>
-    <p id="result"></p>
+    <div class="container">
+        <h1>URL SHORTENER</h1>
 
+        <!-- URL Input with Icon -->
+        <div class="input-container">
+            <i class="fas fa-link"> </i> <!-- Icon in front of the input -->
+            <input id="urlInput" type="text" placeholder=" Enter your URL">
+        </div>
+
+        <!-- Shorten Button with Icon -->
+        <div class="button-container">
+            <button id="shortenBtn" onclick="shortenUrl()">
+                <i class="fas fa-arrow-right"></i> Shorten
+            </button>
+        </div>
+
+        <p id="result"></p>
+    </div>
+    
     <script>
         async function shortenUrl() {
             const urlInput = document.getElementById('urlInput').value;
